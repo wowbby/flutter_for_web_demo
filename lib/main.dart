@@ -247,14 +247,38 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
 
   Widget _buildCategoryGrid() {
     final categories = [
-      {'icon': Icons.tv, 'title': '电视'},
-      {'icon': Icons.ac_unit, 'title': '空调'},
-      {'icon': Icons.kitchen, 'title': '冰箱'},
-      {'icon': Icons.local_laundry_service, 'title': '洗衣机'},
-      {'icon': Icons.touch_app, 'title': '电视遥控器'},
-      {'icon': Icons.mic, 'title': '麦克风'},
-      {'icon': Icons.cleaning_services, 'title': '家电清洗'},
-      {'icon': Icons.support, 'title': '电视服务'},
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/d648f77e0dc04efbbd68af4b34873008.png',
+        'title': '电视'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/4256755de1f6474c8d6f4fd29b78c81b.png',
+        'title': '空调'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/0f68ac5d9bb2461c8de7e23c2cbaf47f.png',
+        'title': '冷柜'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/647896506d6646ff9ef9219529a4c134.png',
+        'title': '冰箱'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/e4276966e0644a4489051771130c89ce.png',
+        'title': '厨电'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/8ab44db969a5458dbbe1ff3a99a2fb03.png',
+        'title': '洗衣机'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/3485a418bc114f9bbe165fb3f7cf7b96.png',
+        'title': '家电清洗'
+      },
+      {
+        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/5287c77b52694ce38f5c2d6350b61fcf.png',
+        'title': '电视遥控器'
+      },
     ];
 
     return Container(
@@ -285,7 +309,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
         itemBuilder: (context, index) {
           final category = categories[index];
           return _buildCategoryItem(
-            icon: category['icon'] as IconData,
+            imageUrl: category['imageUrl'] as String,
             title: category['title'] as String,
           );
         },
@@ -293,7 +317,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
     );
   }
 
-  Widget _buildCategoryItem({required IconData icon, required String title}) {
+  Widget _buildCategoryItem({required String imageUrl, required String title}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -304,10 +328,35 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
             color: Colors.grey[100],
             borderRadius: BorderRadius.circular(25),
           ),
-          child: Icon(
-            icon,
-            color: const Color(0xFF1976D2),
-            size: 24,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Image.network(
+              imageUrl,
+              width: 50,
+              height: 50,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                // 如果图片加载失败，显示默认图标
+                return Icon(
+                  Icons.category,
+                  color: const Color(0xFF1976D2),
+                  size: 24,
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1976D2)),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
         const SizedBox(height: 8),
