@@ -254,7 +254,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
       {'icon': Icons.ac_unit, 'title': '空调'},
       {'icon': Icons.kitchen, 'title': '冰箱'},
       {'icon': Icons.local_laundry_service, 'title': '洗衣机'},
-      {'icon': Icons.remote_control, 'title': '电视遥控器'},
+      {'icon': Icons.touch_app, 'title': '电视遥控器'},
       {'icon': Icons.mic, 'title': '麦克风'},
       {'icon': Icons.cleaning_services, 'title': '家电清洗'},
       {'icon': Icons.support, 'title': '电视服务'},
@@ -344,7 +344,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
             child: _buildPromotionCard(
               title: '海信电视遥控器',
               subtitle: '下单送电池2节',
-              icon: Icons.remote_control,
+              icon: Icons.touch_app,
               color: const Color(0xFFFF9800),
             ),
           ),
