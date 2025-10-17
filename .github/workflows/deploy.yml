@@ -21,7 +21,8 @@ jobs:
     - name: 设置 Flutter
       uses: subosito/flutter-action@v2
       with:
-        channel: 'stable'  # 使用最新稳定版，自动匹配项目所需的 Dart SDK
+        flutter-version: '3.22.1'
+        channel: 'stable'
     
     - name: 检查 Flutter 版本
       run: flutter --version
