@@ -32,8 +32,6 @@ class HisenseHomePage extends StatefulWidget {
 }
 
 class _HisenseHomePageState extends State<HisenseHomePage> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +48,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
                     _buildCategoryGrid(),
                     _buildPromotionCards(),
                     _buildRecommendationSection(),
-                    const SizedBox(height: 100), // 为底部导航栏留空间
+                    const SizedBox(height: 32), // 底部留白
                   ],
                 ),
               ),
@@ -58,7 +56,6 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -84,7 +81,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
                   const SizedBox(width: 12),
                   const Icon(Icons.search, color: Colors.white70),
                   const SizedBox(width: 8),
-                  Text(
+            Text(
                     '海信电视',
                     style: TextStyle(
                       color: Colors.white70,
@@ -480,77 +477,4 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    final navItems = [
-      {'icon': Icons.home, 'label': '首页'},
-      {'icon': Icons.shopping_bag, 'label': '商城'},
-      {'icon': Icons.gamepad, 'label': ''}, // 特殊按钮
-      {'icon': Icons.favorite, 'label': '服务'},
-      {'icon': Icons.person, 'label': '我的'},
-    ];
-
-    return Container(
-      height: 80,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 4,
-            offset: Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(navItems.length, (index) {
-          final item = navItems[index];
-          final isSelected = _selectedIndex == index;
-          final isSpecial = index == 2;
-
-          if (isSpecial) {
-            return Container(
-              width: 60,
-              height: 60,
-              decoration: const BoxDecoration(
-                color: Color(0xFF00BCD4),
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.gamepad,
-                color: Colors.white,
-                size: 28,
-              ),
-            );
-          }
-
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item['icon'] as IconData,
-                  color: isSelected ? const Color(0xFF1976D2) : Colors.grey,
-                  size: 24,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  item['label'] as String,
-                  style: TextStyle(
-                    color: isSelected ? const Color(0xFF1976D2) : Colors.grey,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }),
-      ),
-    );
-  }
 }
