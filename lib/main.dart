@@ -192,10 +192,6 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
             child: Container(
               width: 250,
               height: 200,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(20),
-              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
@@ -204,11 +200,19 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
                   height: 200,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
-                    return const Center(
-                      child: Icon(
-                        Icons.tv,
-                        size: 120,
-                        color: Colors.white,
+                    return Container(
+                      width: 250,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.tv,
+                          size: 120,
+                          color: Colors.white,
+                        ),
                       ),
                     );
                   },
@@ -217,7 +221,10 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
                     return Container(
                       width: 250,
                       height: 200,
-                      color: Colors.white.withOpacity(0.1),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: const Center(
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -230,63 +237,6 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
             ),
           ),
           
-          // 文字内容
-          Positioned(
-            left: 20,
-            top: 40,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  '海信UX RGB-MiniLED电视',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  '跨代引领三生万色',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  '红得正·绿得准·蓝得透·超鲜活',
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 14,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF8D6E63),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '震撼发布 享多重好礼',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Icon(Icons.handshake, color: Colors.white, size: 16),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
           
           // 轮播指示器
           Positioned(
@@ -452,16 +402,12 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
         children: [
           Expanded(
             child: _buildPromotionCard(
-              title: '家电清洗',
-              subtitle: '下单立享折扣价',
               imageUrl: 'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202507/202507040959231331.jpg',
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: _buildPromotionCard(
-              title: '海信电视遥控器',
-              subtitle: '下单送电池2节',
               imageUrl: 'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202507/202507040856047665.jpg',
             ),
           ),
@@ -471,12 +417,10 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
   }
 
   Widget _buildPromotionCard({
-    required String title,
-    required String subtitle,
     required String imageUrl,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      height: 120,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -489,88 +433,52 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image.network(
+          imageUrl,
+          width: double.infinity,
+          height: 120,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              width: double.infinity,
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Icon(
+                  Icons.image,
+                  color: Colors.grey,
+                  size: 40,
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imageUrl,
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(
-                          Icons.image,
-                          color: Colors.grey,
-                          size: 20,
-                        ),
-                      );
-                    },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1976D2)),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+              ),
+            );
+          },
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Container(
+              width: double.infinity,
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                    valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1976D2)),
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    Text(
-                      subtitle,
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 12,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }
