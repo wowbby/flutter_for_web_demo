@@ -200,18 +200,32 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
                   height: 200,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
+                    print('轮播图片加载错误: $error');
                     return Container(
                       width: 250,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.tv,
-                          size: 120,
-                          color: Colors.white,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.error_outline,
+                              size: 60,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              '图片加载失败',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -441,18 +455,32 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
           height: 120,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
+            print('促销卡片图片加载错误: $error');
             return Container(
               width: double.infinity,
               height: 120,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Center(
-                child: Icon(
-                  Icons.image,
-                  color: Colors.grey,
-                  size: 40,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.error_outline,
+                      color: Colors.grey[600],
+                      size: 40,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '图片加载失败',
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             );
