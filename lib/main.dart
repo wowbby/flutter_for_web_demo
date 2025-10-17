@@ -36,13 +36,8 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
   int _currentImageIndex = 0;
   
   final List<String> _bannerImages = [
-    'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202509/202509190612432197.jpg',
-    'https://img.shop.hisense.com/2025/06/19/fbdf366a-ef39-4875-afff-cadc637047fe.png',
-    'https://img.shop.hisense.com/2025/04/15/8ce8df72-60e9-42bd-9dae-d4d8ecd0bf69.png',
-    'https://img.shop.hisense.com/2025/04/15/eaa65ef2-1d1d-4864-90d3-de76285a3fee.png',
-    'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202504/202504210841478905.jpg',
-    'https://img.shop.hisense.com/2025/04/14/d376c465-d314-417f-b01b-6018d9862801.png',
-    'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202504/202504270654382917.jpg',
+    'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg',
+    'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg',
   ];
 
   @override
@@ -279,38 +274,14 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
 
   Widget _buildCategoryGrid() {
     final categories = [
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/d648f77e0dc04efbbd68af4b34873008.png',
-        'title': '电视'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/4256755de1f6474c8d6f4fd29b78c81b.png',
-        'title': '空调'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/0f68ac5d9bb2461c8de7e23c2cbaf47f.png',
-        'title': '冷柜'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/647896506d6646ff9ef9219529a4c134.png',
-        'title': '冰箱'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/e4276966e0644a4489051771130c89ce.png',
-        'title': '厨电'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/8ab44db969a5458dbbe1ff3a99a2fb03.png',
-        'title': '洗衣机'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/3485a418bc114f9bbe165fb3f7cf7b96.png',
-        'title': '家电清洗'
-      },
-      {
-        'imageUrl': 'https://shopfile.juhaolian.cn/hisense/download/operationPC/advertPic/png/5287c77b52694ce38f5c2d6350b61fcf.png',
-        'title': '电视遥控器'
-      },
+      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '电视'},
+      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '空调'},
+      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '冷柜'},
+      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '冰箱'},
+      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '厨电'},
+      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '洗衣机'},
+      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '家电清洗'},
+      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '电视遥控器'},
     ];
 
     return Container(
@@ -416,13 +387,13 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
         children: [
           Expanded(
             child: _buildPromotionCard(
-              imageUrl: 'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202507/202507040959231331.jpg',
+              imageUrl: 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg',
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: _buildPromotionCard(
-              imageUrl: 'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202507/202507040856047665.jpg',
+              imageUrl: 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg',
             ),
           ),
         ],
