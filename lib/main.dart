@@ -31,7 +31,51 @@ class HisenseHomePage extends StatefulWidget {
   State<HisenseHomePage> createState() => _HisenseHomePageState();
 }
 
-class _HisenseHomePageState extends State<HisenseHomePage> {
+class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  int _currentImageIndex = 0;
+  
+  final List<String> _bannerImages = [
+    'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202509/202509190612432197.jpg',
+    'https://img.shop.hisense.com/2025/06/19/fbdf366a-ef39-4875-afff-cadc637047fe.png',
+    'https://img.shop.hisense.com/2025/04/15/8ce8df72-60e9-42bd-9dae-d4d8ecd0bf69.png',
+    'https://img.shop.hisense.com/2025/04/15/eaa65ef2-1d1d-4864-90d3-de76285a3fee.png',
+    'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202504/202504210841478905.jpg',
+    'https://img.shop.hisense.com/2025/04/14/d376c465-d314-417f-b01b-6018d9862801.png',
+    'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202504/202504270654382917.jpg',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+    
+    // 启动自动轮播
+    _startAutoSlide();
+  }
+
+  void _startAutoSlide() {
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+    setState(() {
+          _currentImageIndex = (_currentImageIndex + 1) % _bannerImages.length;
+        });
+        _animationController.reset();
+        _animationController.forward();
+      }
+    });
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +185,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
             ),
           ),
           
-          // 产品图片
+          // 产品图片轮播
           Positioned(
             right: -50,
             bottom: -20,
@@ -152,11 +196,35 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
                 color: Colors.white.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Center(
-                child: Icon(
-                  Icons.tv,
-                  size: 120,
-                  color: Colors.white,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  _bannerImages[_currentImageIndex],
+                  width: 250,
+                  height: 200,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Center(
+                      child: Icon(
+                        Icons.tv,
+                        size: 120,
+                        color: Colors.white,
+                      ),
+                    );
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Container(
+                      width: 250,
+                      height: 200,
+                      color: Colors.white.withOpacity(0.1),
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -227,13 +295,13 @@ class _HisenseHomePageState extends State<HisenseHomePage> {
             right: 0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) {
+              children: List.generate(_bannerImages.length, (index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: index == 0 ? 20 : 8,
+                  width: index == _currentImageIndex ? 20 : 8,
                   height: 8,
                   decoration: BoxDecoration(
-                    color: index == 0 ? Colors.white : Colors.white.withOpacity(0.5),
+                    color: index == _currentImageIndex ? Colors.white : Colors.white.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 );
