@@ -30,7 +30,6 @@ class HisenseHomePage extends StatefulWidget {
 class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderStateMixin {
   late AnimationController _animationController;
   int _currentImageIndex = 0;
-  int _selectedIndex = 0;
   
   final List<String> _bannerImages = [
     'images/轮播1.jpg',
@@ -83,7 +82,6 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
                 ),
               ),
             ),
-            _buildBottomNavigationBar(),
           ],
         ),
       ),
@@ -610,87 +608,4 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
     );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return Container(
-      height: 80,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _buildNavItem(Icons.home, '首页', 0),
-          _buildNavItem(Icons.shopping_bag, '商城', 1),
-          _buildCenterNavItem(),
-          _buildNavItem(Icons.favorite, '服务', 2),
-          _buildNavItem(Icons.person, '我的', 3),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = _selectedIndex == index;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              color: isSelected ? const Color(0xFF1A237E) : Colors.grey,
-              size: 24,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                color: isSelected ? const Color(0xFF1A237E) : Colors.grey,
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCenterNavItem() {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: const Color(0xFF00BCD4),
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF00BCD4).withOpacity(0.4),
-            spreadRadius: 2,
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: const Icon(
-        Icons.add,
-        color: Colors.white,
-        size: 28,
-      ),
-    );
-  }
 }
