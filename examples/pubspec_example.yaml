@@ -1,0 +1,30 @@
+# 在你的主应用的 pubspec.yaml 中添加以下依赖
+# 用于在 Flutter 应用内加载 Web 页面
+
+name: your_app_name
+description: Your app description.
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # WebView 依赖 - 用于加载网页
+  webview_flutter: ^4.4.2
+  
+  # 可选：URL 启动器 - 用于在外部浏览器打开链接
+  url_launcher: ^6.2.1
+  
+  # 可选：连接检查 - 用于检查网络状态
+  connectivity_plus: ^5.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
