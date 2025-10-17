@@ -36,8 +36,8 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
   int _currentImageIndex = 0;
   
   final List<String> _bannerImages = [
-    'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg',
-    'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg',
+    'images/轮播1.jpg',
+    'images/轮播2.jpg',
   ];
 
   @override
@@ -165,7 +165,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
           // 轮播图片 - 全屏显示
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
+            child: Image.asset(
               _bannerImages[_currentImageIndex],
               width: double.infinity,
               height: 300,
@@ -263,14 +263,14 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
 
   Widget _buildCategoryGrid() {
     final categories = [
-      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '电视'},
-      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '空调'},
-      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '冷柜'},
-      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '冰箱'},
-      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '厨电'},
-      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '洗衣机'},
-      {'imageUrl': 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg', 'title': '家电清洗'},
-      {'imageUrl': 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg', 'title': '电视遥控器'},
+      {'icon': Icons.tv, 'title': '电视'},
+      {'icon': Icons.ac_unit, 'title': '空调'},
+      {'icon': Icons.kitchen, 'title': '冷柜'},
+      {'icon': Icons.kitchen, 'title': '冰箱'},
+      {'icon': Icons.microwave, 'title': '厨电'},
+      {'icon': Icons.local_laundry_service, 'title': '洗衣机'},
+      {'icon': Icons.cleaning_services, 'title': '家电清洗'},
+      {'icon': Icons.touch_app, 'title': '电视遥控器'},
     ];
 
     return Container(
@@ -301,7 +301,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
         itemBuilder: (context, index) {
           final category = categories[index];
           return _buildCategoryItem(
-            imageUrl: category['imageUrl'] as String,
+            icon: category['icon'] as IconData,
             title: category['title'] as String,
           );
         },
@@ -309,52 +309,22 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
     );
   }
 
-  Widget _buildCategoryItem({required String imageUrl, required String title}) {
+  Widget _buildCategoryItem({required IconData icon, required String title}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.network(
-          imageUrl,
+        Container(
           width: 50,
           height: 50,
-          fit: BoxFit.contain,
-          errorBuilder: (context, error, stackTrace) {
-            // 如果图片加载失败，显示默认图标
-            return Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(
-                Icons.category,
-                color: Color(0xFF1976D2),
-                size: 24,
-              ),
-            );
-          },
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Center(
-                child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1976D2)),
-                  ),
-                ),
-              ),
-            );
-          },
+          decoration: BoxDecoration(
+            color: Colors.grey[100],
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Icon(
+            icon,
+            color: const Color(0xFF1976D2),
+            size: 28,
+          ),
         ),
         const SizedBox(height: 8),
         Text(
@@ -376,13 +346,13 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
         children: [
           Expanded(
             child: _buildPromotionCard(
-              imageUrl: 'https://img0.pconline.com.cn/pconline/2504/07/19123372_02415282_thumb.jpg',
+              imageUrl: 'images/家电清洗.jpg',
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: _buildPromotionCard(
-              imageUrl: 'https://pic2.zhimg.com/v2-a31e6a043b8343360d6e7f8fa8b2d7f9_1440w.jpg',
+              imageUrl: 'images/遥控器.jpg',
             ),
           ),
         ],
@@ -409,7 +379,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
-        child: Image.network(
+        child: Image.asset(
           imageUrl,
           width: double.infinity,
           height: 120,
