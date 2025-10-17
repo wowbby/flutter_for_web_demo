@@ -454,8 +454,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
             child: _buildPromotionCard(
               title: '家电清洗',
               subtitle: '下单立享折扣价',
-              icon: Icons.cleaning_services,
-              color: const Color(0xFF4CAF50),
+              imageUrl: 'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202507/202507040959231331.jpg',
             ),
           ),
           const SizedBox(width: 12),
@@ -463,8 +462,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
             child: _buildPromotionCard(
               title: '海信电视遥控器',
               subtitle: '下单送电池2节',
-              icon: Icons.touch_app,
-              color: const Color(0xFFFF9800),
+              imageUrl: 'https://jhk-cdn-mampic.hismarttv.com/epgdata/mamPic/8/999/202507/202507040856047665.jpg',
             ),
           ),
         ],
@@ -475,8 +473,7 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
   Widget _buildPromotionCard({
     required String title,
     required String subtitle,
-    required IconData icon,
-    required Color color,
+    required String imageUrl,
   }) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -501,13 +498,52 @@ class _HisenseHomePageState extends State<HisenseHomePage> with TickerProviderSt
                 width: 40,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(
-                  icon,
-                  color: color,
-                  size: 20,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    imageUrl,
+                    width: 40,
+                    height: 40,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Icon(
+                          Icons.image,
+                          color: Colors.grey,
+                          size: 20,
+                        ),
+                      );
+                    },
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Center(
+                          child: SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1976D2)),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
